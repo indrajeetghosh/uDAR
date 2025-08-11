@@ -60,14 +60,10 @@ def cmmd_loss(source_features, source_labels, target_features, target_pseudo_lab
         mean_K_tt = num_tt / den_tt
         mean_K_st = (K_st * W_st).sum() / W_st.sum().clamp_min(eps)
         loss_c = mean_K_ss + mean_K_tt - 2.0 * mean_K_st
-
         total_loss += loss_c
         classes_present += 1
-
     if classes_present == 0:
         return torch.tensor(0.0, device=device, dtype=dtype, requires_grad=True)
-
-                  
     cmmd = total_loss / classes_present
-    cmmd.requires_grad_()  # ensure it's a leaf with grad
+    cmmd.requires_grad_()  
     return cmmd
