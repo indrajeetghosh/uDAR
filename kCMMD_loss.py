@@ -2,6 +2,9 @@
 
 #Regularization based CMMD loss:- Kernel (regularization added directly to the kernel matrix, impacting the kernelized feature space - motivation is prevent overfitting and to enhance the stability - singularity or ill-conditioning during during matrix inversion or eigenvalue decomposition.
 
+# Imp: λI regularization affects only the biased form (unbiased removes diagonals) and adjusts diagonal kernel terms for stability. No matrix inversion is done, so “ill-conditioning” isn’t relevant here.
+
+
 import torch
 import torch.nn.functional as F
 
