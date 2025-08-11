@@ -1,9 +1,8 @@
-#Classwise Alignmnet without gaussian kernel based:- Regularization is used because CMMD loss essentially measures the squared norm of the difference between the mean features of corresponding classes from source and target dataset i.e. if the means are very close to each other, the squared norm might become very small/neglible, potentially leading to numerical instability during optimization. This regularization is done direclt on feature space.
+# Class-wise alignment (linear kernel): MMD equals the squared distance between class-conditional means; small values indicate alignment, not instability.
 
-#Regularization based CMMD loss:- Kernel (regularization added directly to the kernel matrix, impacting the kernelized feature space - motivation is prevent overfitting and to enhance the stability - singularity or ill-conditioning during during matrix inversion or eigenvalue decomposition.
+# Kernel-regularized CMMD (biased form): Add λI to K (K ← K + λI) to adjust diagonal mass; relevant only when using the biased estimator.
 
-# Imp: λI regularization affects only the biased form (unbiased removes diagonals) and adjusts diagonal kernel terms for stability. No matrix inversion is done, so “ill-conditioning” isn’t relevant here.
-
+# Note: With unbiased=True (diagonals removed), λI has no effect; no matrix inversion is performed, so “ill-conditioning” isn’t applicable.
 
 import torch
 import torch.nn.functional as F
