@@ -1,8 +1,6 @@
-# Class-wise alignment (linear kernel): MMD equals the squared distance between class-conditional means; small values indicate alignment, not instability.
-
-# Kernel-regularized CMMD (biased form): Add λI to K (K ← K + λI) to adjust diagonal mass; relevant only when using the biased estimator.
-
-# Note: With unbiased=True (diagonals removed), λI has no effect; no matrix inversion is performed, so “ill-conditioning” isn’t applicable.
+# Class-wise alignment (linear kernel case): MMD equals squared distance between class means.
+# Kernel-regularized CMMD (biased form): K ← K + λI adjusts diagonal mass; only relevant with unbiased=False.
+# Note: With unbiased=True (diagonals removed), λ has no effect; no matrix inversion is performed.
 
 import torch
 import torch.nn.functional as F
